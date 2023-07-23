@@ -16,7 +16,8 @@ class homePage {
         pieChart: () => cy.get(`#wmpHNlxF`),
         menuItems: () => cy.get(`ul[class='oxd-main-menu']`),
         search: () => cy.xpath(`//input[@placeholder='Search']`),
-        myInfoIcon: () => cy.xpath(`//a[@class='oxd-main-menu-item']//*[name()='svg']`)
+        myInfoIcon: () => cy.xpath(`//a[@class='oxd-main-menu-item']//*[name()='svg']`),
+        myInfoMenuClick: () => cy.get(`ul[class='oxd-main-menu']`)
     }
     // Functions 
     homePageAssertions() {
@@ -36,6 +37,14 @@ class homePage {
       this.element.menuItems().should('be.visible');
       this.element.search().should('be.empty').clear().type("My Info");
       this.element.myInfoIcon().should('be.visible');
+    }
+
+    myInfoMenuClicked() {
+      this.element.menuItems().should('be.visible');
+      this.element.search().should('be.empty').clear().type("My Info");
+      this.element.myInfoIcon().should('be.visible');
+      this.element.myInfoMenuClick().should('be.visible').click();
+      this.element.helpBtn().should('not.be.disabled').and('be.visible');
     }
 }
 module.exports = new homePage();
