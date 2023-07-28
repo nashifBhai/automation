@@ -46,5 +46,12 @@ class loginPage {
       this.element.passwordInput().should('be.visible').type("admin123");
       this.element.loginBtn().should('not.be.disabled').click();
     }
+
+    loginFunctionalityJson(username, password) {
+      this.loginPageAssertions();
+      this.element.usernameInput().should('be.empty').clear().type(username);
+      this.element.passwordInput().should('be.visible').type(password);
+      this.element.loginBtn().should('not.be.disabled').click();
+    }
 }
 module.exports = new loginPage();
