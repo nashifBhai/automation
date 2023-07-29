@@ -27,3 +27,8 @@
 /// <reference types="cypress" />
 /// <reference types="cypress-xpath" />
 /// <reference types="cypress-file-upload" />
+const loginPageObjs = require("../../cypress/e2e/page_objects/login.page");
+
+Cypress.Commands.add('loginResource', () => {
+    loginPageObjs.loginPageAssertions();
+ })

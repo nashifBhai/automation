@@ -6,6 +6,7 @@ const testData = require("../../fixtures/credentials.json");
 beforeEach(() => {
     // open the application and verify elements
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    cy.loginResource();
 });
 
 describe("Login Verification for User", () => {
