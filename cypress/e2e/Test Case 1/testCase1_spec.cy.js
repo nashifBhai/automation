@@ -24,13 +24,13 @@ describe("Login Verification for User", () => {
     it("Check Login Pages for right credentials", () => {
         //login with general approach
         loginPageObjs.loginFunctionality();
-        //intercept
-        cy.intercept('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index').as('posts')
+        //intercept with link
+        cy.intercept('https://opensource-demo.orangehrmlive.com/web/index.php/events/push').as('login');
         //cy.wait(20000) // default request Timeout will be overwritten by this value
-        //cy.wait('@posts');
+        cy.wait('@login');
         cy.wait(3000);
         homePageObjs.homePageAssertions();
-        //intercept
+        //intercept with api
         cy.intercept('Get', '/web/index.php/*').as('indexPage');
         //cy.wait('@indexPage');
         //cy.then(Cypress.session.clearCurrentSessionData);
