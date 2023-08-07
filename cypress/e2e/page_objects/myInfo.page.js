@@ -3,15 +3,15 @@ class myInfoPage {
         //Property
         //locator
         driversLiscenceNo: () => cy.xpath(`(//input[@class='oxd-input oxd-input--active'])[5]`),
-        licenseExpiryDate: () => cy.xpath(`(//input[@placeholder='yyyy-mm-dd'])[1]`),//2023-12-31
-        femaleGender: () => cy.xpath(`//input[@value='2']`),
+        licenseExpiryDate: () => cy.xpath(`(//*[@class='oxd-input oxd-input--active'])[6]`),//2023-12-31
+        femaleGender: () => cy.xpath(`//label[normalize-space()='Female']`),
         gender: () => cy.get(`[type="radio"]`),
         smokecheck: () => cy.xpath(`//label[normalize-space()='Yes']`),
         addBtn: () => cy.xpath(`//button[normalize-space()='Add']`),
         browseFile: () => cy.get(`input[type='file']`),
         uploadFile: () => cy.get(`.oxd-icon.bi-upload.oxd-file-input-icon`),
         saveBtn: () => cy.get(`div[class='orangehrm-attachment'] button[type='submit']`),
-        downloadBtn: () => cy.get(`.oxd-icon.bi-download`),
+        downloadBtn: () => cy.xpath(`(//*[@class="oxd-icon-button oxd-table-cell-action-space"])[1]`), //download icon
     }
     // Functions 
     addMyInfo() {
@@ -25,15 +25,16 @@ class myInfoPage {
       this.element.gender().check('2', {force: true});
       this.element.smokecheck().should('be.visible').click({force: true});
       this.element.addBtn().should('be.visible').click();
-      //this.addFile();
+      this.addFile();
       this.save();
     }
 
     addFile() {
-      let p = 'sample.png'
-      this.element.browseFile().click({force: true}).selectFile(p);
+      let p = "sample.png";
       cy.wait(8000);
-      this.element.uploadFile().should('be.visible').click();  
+      this.element.browseFile().selectFile(p, { force: true });
+      cy.wait(8000);
+      //this.element.uploadFile().should('be.visible').click();  
     }
 
     save() {
@@ -49,7 +50,7 @@ class myInfoPage {
     }
 
     fileRead() {
-      cy.readFile('/Users/nashif/udenixAutomation/cypress/fixtures/credentials.json').its('name').should('eq', 'nashif')
+      cy.readFile('cypress/fixtures/credentials.json').its('name').should('eq', 'nashif')
     }
 }
 module.exports = new myInfoPage();

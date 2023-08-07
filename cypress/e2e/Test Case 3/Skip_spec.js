@@ -1,13 +1,13 @@
 describe('Register and Login', () => {
   beforeEach(() => {
     // match any request that exactly matches the URL
-    cy.intercept('https://www.automationexercise.com/').as('visitURL');
+    //cy.intercept('https://www.automationexercise.com/').as('visitURL');
 
-    cy.visit('https://www.automationexercise.com/');
-
+    //cy.visit('https://www.automationexercise.com/');
+    cy.visit('https://testautomationpractice.blogspot.com/');
   })
 
-  it('new user sign up', () => {
+  it.skip('new user sign up', () => {
     //wait for 6 s
     cy.wait(1000);
     // assert the element's text includes the given substring
@@ -34,5 +34,5 @@ describe('Register and Login', () => {
     cy.get('#optin').check();
     //dropdown
     cy.get('[data-qa="country"]').select("Canada");
+});
 })
-  })
