@@ -15,6 +15,8 @@ class loginPage {
         forogtPasswordLink: () => cy.get(`.oxd-text.oxd-text--p.orangehrm-login-forgot-header`),
         cancelBtn: () => cy.xpath(`//button[normalize-space()='Cancel']`),
         invalidCredentialsAlert: () => cy.get(`.oxd-text.oxd-text--p.oxd-alert-content-text`),
+        //Jquery
+        inputJQuery: (input) => cy.get(`input[placeholder='${input}']`),
     }
     // Functions
 
@@ -52,6 +54,19 @@ class loginPage {
       this.element.usernameInput().should('be.empty').clear().type(username);
       this.element.passwordInput().should('be.visible').type(password);
       this.element.loginBtn().should('not.be.disabled').click();
+    }
+
+    loginFunctionalityJquery() {
+      this.loginPageAssertions();
+      this.element.inputJQuery("Username").should('be.empty').clear().type("Admin");
+      this.element.inputJQuery("Password").should('be.visible').type("admin123");
+      this.element.loginBtn().should('be.visible').then(($body)=>{
+        if($body.text().includes("Login")){
+          this.element.middleRightLogo().should('exist');
+          this.element.loginTitle().should('be.visible');
+        }
+      });
+      this.element.loginBtn().click();
     }
 }
 module.exports = new loginPage();

@@ -57,4 +57,9 @@ describe("Update of My Info", () => {
         // read file
         myInfoPageObjs.fileRead();
     });
+
+    it("JQuery", () => {
+        //login with JQuery
+        loginPageObjs.loginFunctionalityJquery();
+    });
 });

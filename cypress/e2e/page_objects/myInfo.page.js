@@ -30,7 +30,7 @@ class myInfoPage {
     }
 
     addFile() {
-      let p = "sample.png";
+      let p = "file_example_XLS_10.xls";
       cy.wait(8000);
       this.element.browseFile().selectFile(p, { force: true });
       cy.wait(8000);
